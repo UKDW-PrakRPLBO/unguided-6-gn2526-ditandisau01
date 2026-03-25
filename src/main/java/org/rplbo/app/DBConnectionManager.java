@@ -1,14 +1,13 @@
 package org.rplbo.app;
 
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class DBConnectionManager {
     // TODO 1 : CONNECT KE DATABASE (Masukan Path DB)
-    private static final String DB_URL = "";
+    // Menggunakan jdbc:sqlite: nama file database (misal asylum.db)
+    private static final String DB_URL = "jdbc:sqlite:asylum.db";
     private static Connection connection;
 
     private DBConnectionManager() {
@@ -18,8 +17,8 @@ public class DBConnectionManager {
     public static Connection getConnection() {
         try {
             if (connection == null || connection.isClosed()) {
-                // TODO 2 : getConnection jika connection null/closed (gunakan DriverManager.getConnection)
-                connection = null;
+                // TODO 2 : getConnection jika connection null/closed
+                connection = DriverManager.getConnection(DB_URL);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -37,4 +36,4 @@ public class DBConnectionManager {
             }
         }
     }
-    }
+}
